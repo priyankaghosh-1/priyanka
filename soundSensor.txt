@@ -1,0 +1,20 @@
+const int soundSensorPin = A0;    // Analog pin connected to sound sensor output
+const int ledPin = 13;             // Digital pin connected to LED
+const int threshold = 500;         // Sound threshold for LED to turn on (adjust as needed)
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);              // Optional: for debugging
+}
+
+void loop() {
+  int sensorValue = analogRead(soundSensorPin);
+  Serial.println(sensorValue);     // Optional: to see sensor readings in Serial Monitor
+
+  if (sensorValue > threshold) {
+    digitalWrite(ledPin, HIGH);    // Turn LED ON when sound detected above threshold
+  } else {
+    digitalWrite(ledPin, LOW);     // Turn LED OFF otherwise
+  }
+  delay(50);                      // Small delay for stability
+}
